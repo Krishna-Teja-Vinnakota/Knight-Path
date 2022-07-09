@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 5.0.2, 2022-05-05T22:24:20. -->
+<!-- Written by QtCreator 5.0.2, 2022-07-08T01:37:42. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -238,8 +238,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/anirudh/Qt-Projects/my_first_game/my_first_game.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/anirudh/Qt-Projects/my_first_game/my_first_game.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">knight_path2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/anirudh/Documents/Spring_2022/CSE 325 ADA/Knight-Path/knight_path.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/anirudh/Documents/Spring_2022/CSE 325 ADA/Knight-Path/knight_path.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

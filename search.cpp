@@ -1,5 +1,6 @@
 #include "search.h"
 #include <cmath>
+#include <QDebug>
 
 Search::Search(std::pair<int,int> start, std::pair<int,int> goal)
 {
@@ -22,20 +23,35 @@ std::list<std::pair<int, int>> Search::getPath()
 
 bool Search::perform()
 {
+    int ex = 0;
     int h = heuristic(startPos.first, goalPos.first, startPos.second, goalPos.second);
     startState = new State(startPos.first, startPos.second, 0, h);
     startState->parent = nullptr;
     fringe.push(startState);
     while(!fringe.empty()) {
         State* frontier = fringe.top(); fringe.pop();
-        visited[frontier->row][frontier->col] = 1;
         if (isGoal(*frontier)) {
             endState = frontier;
+            qDebug() << "\nexpanding (" << frontier->row << "," << frontier->col << ") ... g ="
+                     << frontier->movesDone << ", h =" << frontier->h; ex++;
+            if (frontier->parent != nullptr)
+                qDebug() << "child of (" << frontier->parent->row << "," << frontier->parent->col << ")\n";
+                qDebug() << "GOAL!\n";
+                qDebug() << "\nNodes Expanded: " << ex ;
             return true;
         }
-        for (State* child : getSuccessors(frontier))
+        if (visited[frontier->row][frontier->col] == 0)
         {
-            fringe.push(child);
+            visited[frontier->row][frontier->col] = 1;
+            qDebug() << "\nexpanding (" << frontier->row << "," << frontier->col << ") ... g ="
+                     << frontier->movesDone << ", h =" << frontier->h; ex++;
+            if (frontier->parent != nullptr)
+                qDebug() << "child of (" << frontier->parent->row << "," << frontier->parent->col << ")";
+            qDebug() << "";
+            for (State* child : getSuccessors(frontier)) {
+                qDebug() << "    " << child->row << "," << child->col << "\n";
+                fringe.push(child);
+            }
         }
     }
     return false;
@@ -44,7 +60,7 @@ bool Search::perform()
 std::vector<State*> Search::getSuccessors(State *curState)
 {
     std::vector<State*> children;
-    int newRow, newCol;
+    int newRow, newCol, g;
     float h;
     for (int i=0; i<8; i++) {
         newRow = curState->row + rowDiff[i];
@@ -52,7 +68,8 @@ std::vector<State*> Search::getSuccessors(State *curState)
         if (isValidPos(newRow, newCol) && !visited[newRow][newCol])
         {
             h = heuristic(newRow, goalPos.first, newCol, goalPos.second);
-            State* childState = new State(newRow, newCol, curState->movesDone+1, h);
+            g = curState->movesDone + 1;
+            State* childState = new State(newRow, newCol, g, h);
             childState->parent = curState;
             children.push_back(childState);
         }

@@ -1,7 +1,7 @@
 #include "list_item.h"
 #include "util.h"
 
-ListItem::ListItem(pi from, pi to, QListWidget *parent): QListWidgetItem(parent)
+ListItem::ListItem(pi from, pi to): QListWidgetItem()
 {
     setTextAlignment(Qt::AlignHCenter);
     setBackground(QBrush(Qt::white));
@@ -12,17 +12,15 @@ ListItem::ListItem(pi from, pi to, QListWidget *parent): QListWidgetItem(parent)
 
 void ListItem::highlight()
 {
-    QGradient grad = QGradient(QGradient::MorpheusDen);
-    grad.setCoordinateMode(QGradient::ObjectMode);
-    setBackground(
-            QGradient(grad)
-    );
-
-    setForeground(QBrush(Qt::white));
-
+    // QGradient grad;
+    // grad.setCoordinateMode(QGradient::ObjectMode);
+    // grad = QGradient(QGradient::MorpheusDen);
     // QGradient::NightFade
     // QGradient::WildApple
     // QGradient::ZeusMiracle
+
+    setBackground(QBrush(QColor(51,8,103)));
+    setForeground(QBrush(Qt::white));
 }
 
 void ListItem::resetHighlight()

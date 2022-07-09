@@ -47,6 +47,24 @@ void Canvas::prepare()
     form->setGeometry(1050,0,350,900);
     addWidgetToScene(form);
 
-    knight = new Piece();
+    flag   = new Piece("flag");
+    knight = new Piece("knight");
+    start  = new Piece("circle");
+}
 
+void Canvas::markStep(int x, int y)
+{
+    Piece *p = new Piece("ring");
+    p->placePiece(tiles[x][y]);
+    stepStack.push(p);
+}
+
+void Canvas::resetSteps()
+{
+    while (!stepStack.empty()) {
+        Piece *p = stepStack.top();
+        removeFromScene(p);
+        stepStack.pop();
+        delete p;
+    }
 }

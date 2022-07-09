@@ -6,6 +6,7 @@
 #include <QGraphicsRectItem>
 #include <QPen>
 #include <QPropertyAnimation>
+#include <stack>
 #include "form.h"
 #include "board.h"
 #include "tile.h"
@@ -24,10 +25,11 @@ public:
     void addWidgetToScene(QWidget *widget);
     void removeFromScene(QGraphicsItem *item);
     void prepare();
+    void markStep(int x, int y);
+    void resetSteps();
 
-    Piece *knight;
-    bool isKnightThere = false;
-
+    Piece *knight, *flag, *start, *step;
+    std::stack<Piece*> stepStack;
     Tile *tiles[8][8];
 
 //public slots:

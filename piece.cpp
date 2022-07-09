@@ -3,9 +3,13 @@
 
 extern Canvas *canvas;
 
-Piece::Piece(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
+Piece::Piece(QString pieceName, QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
 {
     setZValue(10);
+    setImage(pieceName);
+    placePiece( canvas->tiles[0][0] );
+    setVisible(false);                      // reset visibility toggled by placePiece
+    canvas->addToScene(this);
 }
 
 QPointF Piece::getTilePoint(Tile *tile)
@@ -19,20 +23,13 @@ QPointF Piece::getTilePoint(Tile *tile)
 void Piece::placePiece(Tile *tile)
 {
     setPos(getTilePoint(tile));
+    setVisible(true);
 }
 
-void Piece::setImage()
+void Piece::setImage(QString pieceName)
 {
-    setPixmap(QPixmap(":/img/horse.png"));
-}
-
-void Piece::drawPiece(int row, int col)
-{
-    // PixMap must be set before calling placePiece
-    setImage();
-    placePiece( canvas->tiles[row][col] );
-    canvas->addToScene(this);
-    canvas->isKnightThere = true;
+    // init PixMap from res
+    setPixmap(QPixmap(":/img/" + pieceName + ".png"));
 }
 
 void Piece::movePieceTo(int x, int y)

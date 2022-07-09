@@ -4,7 +4,7 @@
 BoardLabel::BoardLabel(QString text, QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
     setZValue(2);
-    QFont font = QFont("blah", 17);         // font family, point
+    QFont font = QFont("cursive", 17);         // font family, point
     font.setStyleHint(QFont::Cursive);
     setFont(font);
     setDefaultTextColor(QColor(238,238,210));

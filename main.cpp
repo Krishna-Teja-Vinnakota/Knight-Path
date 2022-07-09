@@ -19,15 +19,5 @@ int main(int argc, char *argv[])
 
     canvas->show();
 
-//    delay(3000);
-//    canvas->knight->movePieceTo(6,6);
-//    delay(3000);
-//    canvas->knight->movePieceTo(2,3);
-
-//    delay(3000);
-//    canvas->knight->movePieceTo(6,6);
-//    delay(3000);
-//    canvas->knight->movePieceTo(2,3);
-
     return a.exec();
 }

@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/img">
-        <file>horse.png</file>
+        <file>flag.png</file>
+        <file>knight.png</file>
+        <file>ring.png</file>
+        <file>circle.png</file>
     </qresource>
 </RCC>

@@ -13,5 +13,5 @@ State::State(int r, int c, int g, float hx)
 
 bool State::Compare::operator()(const State *a, const State *b) const
 {
-    return a->cost > b->cost;
+    return a->movesDone > b->movesDone;
 }

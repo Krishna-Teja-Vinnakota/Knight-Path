@@ -2,13 +2,15 @@
 #define LISTITEM_H
 
 #include <QListWidgetItem>
+#include <QGraphicsRectItem>
 
 class ListItem : public QListWidgetItem
 {
 public:
-    ListItem(std::pair<int,int> from, std::pair<int,int> to, QListWidget *parent = nullptr);
+    ListItem(std::pair<int,int> from, std::pair<int,int> to);
     void highlight();
     void resetHighlight();
+
 };
 
 

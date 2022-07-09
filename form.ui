@@ -191,6 +191,9 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="frameShadow">
     <enum>QFrame::Sunken</enum>
    </property>
@@ -224,6 +227,15 @@
    <item>
     <property name="text">
      <string>a2 to b3</string>
+    </property>
+    <property name="background">
+     <brush brushstyle="NoBrush">
+      <color alpha="255">
+       <red>0</red>
+       <green>0</green>
+       <blue>0</blue>
+      </color>
+     </brush>
     </property>
    </item>
    <item>

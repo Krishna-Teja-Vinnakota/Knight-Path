@@ -35,17 +35,28 @@ void Form::validateTextInput()
         // and pass them over to drawPiece
         pi knightPos = toIndex(ui->input1->text());
         int row = knightPos.first, col = knightPos.second;
-        if (canvas->isKnightThere) {
-            canvas->knight->placePiece(canvas->tiles[row][col]);
-            ui->movesLabel->setVisible(false);
-            ui->listWidget->setVisible(false);
-        } else {
-            canvas->knight->drawPiece(row, col);
-        }
+        canvas->knight->placePiece(canvas->tiles[row][col]);
+        ui->movesLabel->setVisible(false);
+        ui->listWidget->setVisible(false);
+    } else {
+        canvas->knight->setVisible(false);
+        canvas->start->setVisible(false);
+        canvas->resetSteps();
     }
 
-    bool flag = isSrcValid && isDesValid;
-    ui->pushButton->setEnabled(flag);
+    if (isDesValid) {
+        pi flagPos = toIndex(ui->input2->text());
+        int row = flagPos.first, col = flagPos.second;
+        canvas->flag->placePiece(canvas->tiles[row][col]);
+        ui->movesLabel->setVisible(false);
+        ui->listWidget->setVisible(false);
+    } else {
+        canvas->flag->setVisible(false);
+        canvas->start->setVisible(false);
+        canvas->resetSteps();
+    }
+
+    ui->pushButton->setEnabled(isSrcValid && isDesValid);
 }
 
 void Form::onButtonClick()
@@ -98,17 +109,28 @@ void Form::onButtonClick()
 
     auto curItem = listItems.begin();
     auto nextItem = ++listItems.begin();
+    auto lastItem = --listItems.end();
+    from = path.begin();
     to   = ++path.begin();
 
     while(to != path.end())
     {
         (*curItem)->highlight();
         canvas->knight->movePieceTo(to->first, to->second);
-        delay(2000);
+
+        delay(1000);
+        if (curItem == listItems.begin())
+            canvas->start->placePiece(canvas->tiles[from->first][from->second]);
+        else
+            canvas->markStep(from->first, from->second);
+        delay(1000);
+        if (nextItem == lastItem)
+            canvas->flag->setVisible(false);
+
         if (nextItem != listItems.end())
             (*nextItem)->highlight();
         (*curItem)->resetHighlight();
-        curItem++, nextItem++, to++;
+        curItem++, nextItem++, from++, to++;
     }
 
     ui->input1->setEnabled(true);
